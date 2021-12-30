@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     waterY: 0
+    renderSkybox: 1
     cullingMask:
       serializedVersion: 2
       m_Bits: 4294967295

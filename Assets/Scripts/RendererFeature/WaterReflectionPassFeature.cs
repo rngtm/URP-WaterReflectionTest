@@ -19,9 +19,12 @@ public class WaterReflectionPassFeature : ScriptableRendererFeature
         // 水面の高さ (Y座標)
         public float waterY = 0f;
 
+        // Skyboxをレンダリングする
+        public bool renderSkybox = false;
+        
         // レンダリング対象のレイヤーマスク
         public LayerMask cullingMask = -1;
-        
+
         // レンダリングタイプ
         public RenderQueueType renderQueueType = RenderQueueType.Opaque;
 
@@ -30,7 +33,7 @@ public class WaterReflectionPassFeature : ScriptableRendererFeature
         
         // レンダリング結果をフレームバッファへ合成するタイミング (デバッグ用)
         public RenderPassEvent debugPassEvent = RenderPassEvent.AfterRenderingTransparents;
-        
+
         // trueにすると、反射のデバッグ表示
         public bool debugReflection = false;
     }
@@ -192,6 +195,8 @@ public class WaterReflectionPassFeature : ScriptableRendererFeature
             cmd.Clear();
 
             // レンダリング実行
+            if (Settings.renderSkybox)
+                context.DrawSkybox(renderingData.cameraData.camera);
             context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref _filteringSettings, ref _renderStateBlock);
 
             // 元に戻す
