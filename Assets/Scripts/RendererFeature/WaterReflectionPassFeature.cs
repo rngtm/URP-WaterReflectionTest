@@ -186,7 +186,7 @@ public class WaterReflectionPassFeature : ScriptableRendererFeature
             var cmd = CommandBufferPool.Get(k_ProfilerTag);
             
             // 水面反転を行うように、View行列を加工する
-            // 変換後の頂点座標 = P * V * Reverse * Translate * P * 頂点座標
+            // 変換後の頂点座標 = P * V * Reverse * Translate * M * 頂点座標
             viewMatrix = viewMatrix * reverseMat * translateMat; 
             RenderingUtils.SetViewAndProjectionMatrices(cmd, viewMatrix, projectionMatrix, false);
             
